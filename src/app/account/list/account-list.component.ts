@@ -13,59 +13,44 @@ export class AccountListComponent implements OnInit {
   @ViewChild('formAccount')
   formAccount: AccountFormComponent; //buat variabel untuk menghubungkan parent dan child
 
-  listAccount: Account[] = [];
+  listAccount = [];
   showDetail: boolean = false;
   selectedAccount: Account = new Account();
 
   constructor(private accountService: AccountService, private router: Router) { }
-
   ngOnInit() {
     this.loadData();
   }
 
+  loadData(){
+    let id = sessionStorage.getItem('user');
+    this.accountService.getById(id).subscribe((response)=>{
+      this.listAccount = [response['values']];
+      console.log(this.listAccount);
+    })
+  }
+
   selectAccount(account: Account){
     let copyAccount = new Account(); //let hanya berlaku di satu blok, car adalah variabel global
-    copyAccount.account_id = account.account_id;
+    copyAccount.accountId = account.accountId;
     copyAccount.nik = account.nik;
     copyAccount.name = account.name;
-    copyAccount.birth_date = account.birth_date;
-    copyAccount.username = account.username;
-    copyAccount.password = account.password;
+    copyAccount.gender = account.gender;
+    copyAccount.birthDate = account.birthDate;
     copyAccount.address = account.address;
-    copyAccount.phone_number = account.phone_number;
+    copyAccount.phoneNumber = account.phoneNumber;
     copyAccount.balance = account.balance;
     copyAccount.status = account.status;
-    copyAccount.account_number = account.account_number;
+    copyAccount.accountNumber = account.accountNumber;
     this.selectedAccount= copyAccount;
-    this.showDetail = true;
-    this.formAccount.updateData();
-  }
-
-  loadData(){
-    this.accountService.getList().subscribe(
-      (response)=>{
-        console.log(JSON.stringify(response));
-        Object.assign(this.listAccount, response);
-    },(err)=>{
-      alert('error '+JSON.stringify(err));
-    }
-    );
-  }
-
-  delete(account_id){
-    this.accountService.delete(account_id).subscribe(
-      (response)=>{
-        location.href = '/account-list';
-    },(err)=>{
-      alert('error '+JSON.stringify(err));
-    }
-    );
+    this.accountService.dataEdit = copyAccount;
+    console.log(this.accountService.dataEdit);
+    this.router.navigate(['account-form']);
   }
 
   prosesResult(result){
     if(result){
       this.showDetail=false;
-      this.loadData();
     }
   }
 }

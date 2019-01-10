@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Account } from '../account/account';
 import { AccountService } from '../account/account.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -13,6 +14,7 @@ export class LoginFormComponent implements OnInit {
   @Input()
   account: Account;
 
+  
   @Output()
   result = new EventEmitter();
 
@@ -20,52 +22,37 @@ export class LoginFormComponent implements OnInit {
 
   accountFormGroup: FormGroup;
 
-  constructor(private accountService: AccountService, private formBuilder: FormBuilder) { }
+  constructor(private accountService: AccountService, private formBuilder: FormBuilder, private router : Router) { }
 
   ngOnInit() { //diinit pertama kali
     this.accountFormGroup = this.formBuilder.group({
-      account_id:[''],
-      nik: ['', Validators.required],
-      name: ['', Validators.required],
-      birth_date: ['', Validators.required],
       username: [''],
       password: [''],
-      address: ['', Validators.required],
-      phone_number: ['', Validators.required],
-      balance: ['', Validators.required],
-      status:['', Validators.required],
-      account_number: ['', Validators.required]
     });
 }
 
-
-
 submitData(){
   let account: Account = new Account();
-  account.account_id = this.accountFormGroup.controls['account_id'].value;
-  account.nik = this.accountFormGroup.controls['nik'].value;
-  account.name = this.accountFormGroup.controls['name'].value;
-  account.birth_date = this.accountFormGroup.controls['birth_date'].value;
   account.username = this.accountFormGroup.controls['username'].value;
   account.password = this.accountFormGroup.controls['password'].value;
-  account.address = this.accountFormGroup.controls['address'].value;
-  account.phone_number = this.accountFormGroup.controls['phone_number'].value;
-  account.balance = this.accountFormGroup.controls['balance'].value;
-  account.status = this.accountFormGroup.controls['status'].value;
-  account.account_number = this.accountFormGroup.controls['account_number'].value;
   console.log(account)
   this.accountService.login(account).subscribe(
     (response)=>{
       if(response['status'] == 200){
+        this.accountService.getById = response['values'];
         alert('Sukses Login');
-      } else {
-        alert ('Login Gagal');
+        sessionStorage.setItem('user', response['values']['accountId']);
+        // this.router.navigate(['account-list']);
+        location.href = 'account-list';
+      } else if (response['status'] == 303) {
+        alert('Not Confirmed !');
+      } else if (response['status'] == 444){
+        alert('Login Failed !');
       }
-      console.log(response['status']);
+      console.log(response);
   },(err)=>{
     console.log('error'+err)
-    alert('gagal');   ``
-
+    alert('gagal');
   }
   );
 }
@@ -73,5 +60,4 @@ submitData(){
 cancelChanges(){
   this.result.emit(true);
 }
-
 }

@@ -1,23 +1,23 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { TopupService } from '../topup.service';
+import { TarikTunaiService } from '../tarik-tunai.service';
 import { Router } from '@angular/router';
-import { Topup } from '../topup';
+import { TarikTunai } from '../tarik-tunai';
 import { Account } from 'src/app/account/account';
 
-
 @Component({
-  selector: 'app-topup-form',
-  templateUrl: './topup-form.component.html',
-  styleUrls: ['./topup-form.component.css']
+  selector: 'app-tarik-tunai-form',
+  templateUrl: './tarik-tunai-form.component.html',
+  styleUrls: ['./tarik-tunai-form.component.css']
 })
-export class TopupFormComponent implements OnInit {
+export class TarikTunaiFormComponent implements OnInit {
+
   closeResult: string;
 
   accountId : Object;
 
-  topForm : FormGroup;
+  tarikForm : FormGroup;
 
   @Output()
   result = new EventEmitter();
@@ -25,10 +25,10 @@ export class TopupFormComponent implements OnInit {
   random = 1000 + sessionStorage.getItem('user');
   date = Date.now();
   generateNumber = (this.code+""+this.random+""+this.date);
-  constructor(private fb: FormBuilder, private data :TopupService, private router : Router, private modalService: NgbModal) { }
+  constructor(private fb: FormBuilder, private data :TarikTunaiService, private router : Router, private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.topForm = this.fb.group({
+    this.tarikForm = this.fb.group({
       id:[''],
       amount : ['', Validators.required],
       method: ['', Validators.required],
@@ -40,18 +40,18 @@ export class TopupFormComponent implements OnInit {
     this.router.navigate(['account-list']);
   }
   insertData(content){
-    let topup: Topup = new Topup();
-    topup.id = this.topForm.controls['id'].value;
-    topup.amount = this.topForm.controls['amount'].value;
-    topup.method = this.topForm.controls['method'].value;
-    topup.date = new Date();
-    topup.accountId = sessionStorage.getItem('user');
+    let tarik: TarikTunai = new TarikTunai();
+    tarik.id = this.tarikForm.controls['id'].value;
+    tarik.amount = this.tarikForm.controls['amount'].value;
+    tarik.method = this.tarikForm.controls['method'].value;
+    tarik.date = new Date();
+    tarik.accountId = sessionStorage.getItem('user');
     
     let account = new Account();
     account.accountId = sessionStorage.getItem('user');
-    topup.account = account;
+    tarik.account = account;
 
-    this.data.insert(topup).subscribe(
+    this.data.insert(tarik).subscribe(
       (response)=>{
         console.log(JSON.stringify(response));
         this.result.emit(true);
@@ -80,9 +80,10 @@ export class TopupFormComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-  
+
   cancelChanges(){
-    location.href = '/topup-list';
+    location.href = '/tarik-tunai-list';
   } 
 
 }
+ 

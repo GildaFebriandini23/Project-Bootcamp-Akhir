@@ -1,40 +1,44 @@
 <html>
   <head>
     <title>Login Form</title>
+    <style>
+      body {
+  background: #9CECFB;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #00695c, #26a69a, #4bc2b6);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #00695c , #26a69a, #4bc2b6);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+    </style>
   </head>
   <body>
-    <body>
       <div class="container">
         <div class="row">
           <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
               <div class="card-body">
-                <h5 class="card-title text-center">Login</h5>
-                <hr class="my-4">
+                      &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <img src="https://tbncdn.freelogodesign.org/52ac1272-07b8-4532-ae5f-9c7d87e4d349.png?1547101144639" width="190" height="190" >
+                <hr class="my-1"><br>
                 <form class="form-signin" [formGroup] ="accountFormGroup">
                   <div class="form-label-group">
-                      <label>Username</label>
-                    <input type="email" id="inputEmail" class="form-control" formControlName="username" placeholder="Username" required autofocus > 
+                      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>&nbsp;<label>Username</label>
+                    <input type="email" id="inputEmail" class="form-control" formControlName="username" placeholder="Username" required > 
                   </div><br>
-    
                   <div class="form-label-group">
+                      <span class="input-group-addon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>&nbsp;
                       <label>Password</label>
                     <input type="password" id="inputPassword" class="form-control" formControlName="password" placeholder="Password" required>
                   </div>
                   <br>
-    
-                  <div class="custom-control custom-checkbox mb-3">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                    <label class="custom-control-label" for="customCheck1">Remember password</label>
-                  </div>
                   <button (click)=submitData() class="btn btn-lg btn-info btn-block text-uppercase" type="submit">Login</button>
-                 
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
+     
     </body>
-  </body>
 </html>

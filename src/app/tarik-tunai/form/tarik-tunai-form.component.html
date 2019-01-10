@@ -1,15 +1,15 @@
 <br><br>
-<div><h1 align="center">Top Up Form</h1></div>
+<div><h1 align="center">WithDraw Form</h1></div>
 <hr>
 <br>
 <div class="container">
-<form class="form-horizontal" [formGroup] ="topForm">
+<form class="form-horizontal" [formGroup] ="tarikForm">
   <div class="form-group">&nbsp; &nbsp;
       <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span><label class="control-label col-sm-2">Amount :</label>
     <div class="col-sm-10">
-      <input [class.is-invalid]="topForm.get('amount').invalid && 
-      topForm.get('amount').touched" type="number" class="form-control" formControlName="amount" required>
-      <small   [class.d-none]="topForm.get('amount').valid ||topForm.get('amount').untouched "  class="text-danger">Please, Fill this field!!</small>
+      <input [class.is-invalid]="tarikForm.get('amount').invalid && 
+      tarikForm.get('amount').touched" type="number" class="form-control" formControlName="amount" required>
+      <small   [class.d-none]="tarikForm.get('amount').valid ||tarikForm.get('amount').untouched "  class="text-danger">Please, Fill this field!!</small>
     </div>
   </div>
   <div class="form-group">&nbsp; &nbsp;
@@ -29,7 +29,7 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Payment Code</h4><br>
+      <h4 class="modal-title" id="modal-basic-title">Withdrawal Code</h4><br>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -53,7 +53,6 @@
           <button type="button" class="btn btn-sm btn-outline-primary" (click)="backList()" (click)="modal.close('Save click')">Close</button>
       </div>
   </ng-template>
-  <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
   <hr>
 
 

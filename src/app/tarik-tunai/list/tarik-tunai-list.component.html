@@ -1,7 +1,7 @@
 <br>
-<ul><h1> Top Up List </h1></ul>
+<ul><h1> WithDraw List </h1></ul>
 <hr>
-<ul><button type="button" class="btn btn-success" routerLink="/topup-form">Insert</button></ul>
+<ul><button type="button" class="btn btn-success" routerLink="/tarik-tunai-form">Insert</button></ul>
 <div class="table-responsive">
     <div class="col-md-12">
   <table class="table table-striped">
@@ -12,7 +12,7 @@
       <th>Date</th>
     </thead>
     <tbody>
-      <tr *ngFor="let top of listTopup | paginate: { itemsPerPage: 5, currentPage: p}">
+      <tr *ngFor="let top of listTarik | paginate: { itemsPerPage: 5, currentPage: p}">
         <td>{{top.account.accountNumber}}</td>
         <td>{{top.amount}}</td>
         <td>{{top.method}}</td>
@@ -21,7 +21,7 @@
     </tbody>
   </table>
 
-  <div class="text-center">
+    <div class="text-center">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 </div>

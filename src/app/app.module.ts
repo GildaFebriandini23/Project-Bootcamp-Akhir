@@ -7,7 +7,6 @@ import { LoginFormComponent } from './login/login-form.component';
 import { HomeComponentComponent } from './home/home-component.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import { HistoryListComponent } from './history/history-list.component';
 import { TopupListComponent } from './topup/list/topup-list.component';
 import { TopupFormComponent } from './topup/form/topup-form.component';
 import { TransferFormComponent } from './transfer/form/transfer-form.component';
@@ -17,7 +16,14 @@ import { AccountFormComponent } from './account/form/account-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
- 
+import { NavbarComponent } from './navbar/navbar.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatIconModule } from '@angular/material/icon';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TarikTunaiListComponent } from './tarik-tunai/list/tarik-tunai-list.component';
+import { TarikTunaiFormComponent } from './tarik-tunai/form/tarik-tunai-form.component';
+import { FooterComponent } from './footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,13 +31,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeComponentComponent,
     AboutComponent,
     ContactComponent,
-    HistoryListComponent,
     TopupListComponent,
     TopupFormComponent,
     TransferFormComponent,
     TransferListComponent,
     AccountListComponent,
-    AccountFormComponent
+    AccountFormComponent,
+    NavbarComponent,
+    TarikTunaiListComponent,
+    TarikTunaiFormComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +48,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule,
+    MatIconModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

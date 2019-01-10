@@ -1,0 +1,53 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<html>
+  <head>
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-sm navbar-dark" style="background: #0a917f;">
+          <a class="navbar-brand" routerLink="home-component">
+              <img src="https://tbncdn.freelogodesign.org/52ac1272-07b8-4532-ae5f-9c7d87e4d349.png?1547101144639" width="37" height="37" alt="">
+              Enigma Bank
+            </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarResponsive"  aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav" *ngIf ='!checkLogin()'>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="about-page"> <i class="fa fa-list" aria-hidden="true"></i> About Us </a>
+              
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="contact-page"><i class="fa fa-address-book" aria-hidden="true"></i> Contact</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav" *ngIf ='checkLogin()'>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="account-list"><i class="fa fa-list-alt" aria-hidden="true"></i> Account</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="transfer-list"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Transfer</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" routerLink="topup-list"><i class="fa fa-credit-card" aria-hidden="true"></i> Top Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="tarik-tunai-list"><i class="fa fa-money" aria-hidden="true"></i> Cash Withdrawal</a>
+                  </li>
+            </ul>
+            <ul class="navbar-nav ml-auto" *ngIf ='!checkLogin()'>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="login-form"> <i class="fa fa-user-circle" aria-hidden="true"></i> Login</a>
+            </li>
+            </ul>
+            <ul class="navbar-nav ml-auto" *ngIf ='checkLogin()'>
+            <li class="nav-item" >
+              <a class="nav-link" routerLink="login-form" (click)="logout()"> <i class="fa fa-user-circle" aria-hidden="true"></i> Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  </body>
+</html>
+
+

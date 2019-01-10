@@ -3,33 +3,32 @@
 <hr>
 <br>
 <div class="container">
-<form class="form-horizontal">
-  <div class="form-group">
-    <label class="control-label col-sm-2" >Account Number :</label>
+<form class="form-horizontal" [formGroup] ="trForm">
+  <div class="form-group"> &nbsp; &nbsp;
+      <span class="input-group-addon"><i class="fa fa-credit-card" aria-hidden="true"></i></span><label class="control-label col-sm-2">Account Destination :</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" formControlName="firstName">
+      <input type="text" class="form-control" formControlName="recepient" required>
+    </div>
+  </div>	
+  <div class="form-group">&nbsp; &nbsp;
+    <span class="input-group-addon"><i class="fa fa-university" aria-hidden="true"></i></span><label class="control-label col-sm-2">Name Of Bank :</label>
+    <div class="col-sm-10">
+        <select formControlName="nameBank" class="form-control" required>
+            <option value="BTPN">BTPN</option>
+            <option value="BCA">BCA</option>
+            <option value="BRI">BRI</option>
+            <option value="BNI">BNI</option>
+        </select>
     </div>
   </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2">Recipient :</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" formControlName="lastName">
+  <div class="form-group"> &nbsp; &nbsp;
+      <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span><label class="control-label col-sm-2">Amount :</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" formControlName="amount" required>
+      </div>
     </div>
-  </div>	
-  <div class="form-group">
-    <label class="control-label col-sm-2">Name Of Bank :</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" formControlName="birthDate">
-    </div>
-  </div>	
-  <div class="form-group">
-    <label class="control-label col-sm-2">Date Time :</label>
-    <div class="col-sm-10">
-      <input type="datetime" class="form-control" formControlName="username">
-    </div>
-  </div>	
   <button type="button" (click) = "cancelChanges()" class="btn btn-danger">Cancel</button>
-&nbsp; <button type="button" (click) = "submitData()" [disabled]="!customerFormGroup.valid" class="btn btn-primary">Update</button>
+&nbsp; <button type="button" (click) = "insertData()" class="btn btn-primary">Submit</button>
 </form>
 </div>
 
